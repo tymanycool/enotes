@@ -9,8 +9,6 @@
 
 </head>
 <body>
-
-
     <div style="width: 76%;height:100%;margin: auto;border:solid darkgrey 3px;">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
             <a class="navbar-brand" href="#">ENotes</a>
@@ -51,7 +49,22 @@
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
                 </form>-->
                 &emsp;
-                <a class="nav-link dropdown-toggle" style="border: 0px;"><span>独孤求败</span></a>
+
+                <div onmouseleave="closepop2()">
+                    <div id="marginId">
+                        <a  class="nav-link dropdown-toggle" style="border: 0px;" onclick="onpop()" onmouseenter="onpop()"><span>独孤求败</span></a>
+                    </div>
+                    <div id="popId" class="list-group" style="position: absolute;z-index:1002;display:none;width: 180px;"  >
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <span>上次登陆时间</span><br><span>2018-07-17 12:30:10</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">修改个人资料
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action disabled">退出登陆
+                        </a>
+                    </div>
+                </div>
+
                 <!--<ul class="nav nav-pills">
                     <li class="nav-item dropup" style="border: 0px;">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border: 0px;"><span style="width:150px;">&emsp;&emsp;&emsp;&emsp;独孤求败</span></a>
@@ -178,8 +191,92 @@
         </li>
     </ul>-->
 
+
+
     <script type="text/javascript" language="javascript" src="jquery/3.2.1/jquery.3.2.1.min.js"></script>
     <script type="text/javascript" language="javascript" src="popper/popper.min.js"></script>
     <script type="text/javascript" language="javascript" src="bootstrap/4.1.2/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        //
+        HTMLElement.prototype.__defineGetter__("currentStyle", function () {
+            return this.ownerDocument.defaultView.getComputedStyle(this, null);
+        });
+
+        // 获取元素在页面上的绝对位置
+        function getElementPageLeft(element){
+            var actualLeft=element.offsetLeft;
+            var parent=element.offsetParent;
+            while(parent!=null){
+                actualLeft+=parent.offsetLeft+(parent.offsetWidth-parent.clientWidth)/2;
+                parent=parent.offsetParent;
+            }
+            return actualLeft;
+        }
+
+        function getElementPageTop(element){
+            var actualTop=element.offsetTop;
+            var parent=element.offsetParent;
+            while(parent!=null){
+                actualTop+=parent.offsetTop+(parent.offsetHeight-parent.clientHeight)/2;
+                parent=parent.offsetParent;
+            }
+            return actualTop;
+        }
+        //弹出隐藏层
+        function showDiv(show_div,marginId){
+            // 先显示
+            document.getElementById(show_div).style.display='block';
+            //var left = window.getComputedStyle(document.getElementById(marginId),null).left;
+            var left = document.getElementById(marginId).offsetLeft;
+            var top = document.getElementById(marginId).offsetTop;
+            var width = document.getElementById(marginId).offsetWidth;
+            var height = document.getElementById(marginId).offsetHeight;
+
+            var left2 = document.getElementById(show_div).offsetLeft;
+            var top2 = document.getElementById(show_div).offsetLeft;
+            var width2 = document.getElementById(show_div).offsetWidth;
+            var height2 = document.getElementById(show_div).offsetHeight;
+
+            console.log("left："+left)
+            console.log("top："+top)
+            console.log("width："+width)
+            console.log("height："+height)
+
+            console.log("left2："+left2)
+            console.log("top2："+top2)
+            console.log("width2："+width2)
+            console.log("height2："+height2)
+
+           // $("#"+show_div).offset({left:left-(width2-width),top:top+height});
+            document.getElementById(show_div).style.display='block';
+            document.getElementById(show_div).style.left=left-Math.abs(width2-width)+"px";
+            //alert(left-Math.abs(width2-width));
+            document.getElementById(show_div).style.top=(top+height-1)+"px";
+
+//            document.getElementById(show_div).style.display='block';
+//            document.getElementById(show_div).style.top= top+'px';
+//            document.getElementById(show_div).style.left= left + 'px';
+//            var bgdiv = document.getElementById(bg_div);
+//            bgdiv.style.width = document.body.scrollWidth;
+//            // bgdiv.style.height = $(document).height();
+//            $("#"+bg_div).height($(document).height());
+        };
+        //关闭弹出层
+        function closeDiv(show_div)
+        {
+            document.getElementById(show_div).style.display='none';
+        };
+        function onpop() {
+
+            showDiv('popId','marginId');
+        }
+
+        function closepop2() {
+            closeDiv('popId');
+        }
+
+
+    </script>
 </body>
 </html>
