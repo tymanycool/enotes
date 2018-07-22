@@ -113,7 +113,7 @@
                         <input type="text" class="form-control" placeholder="点击这里编辑主题..." id="inputDefault" style="background-color: #282C34">
                     </div>
                     <div class="card-body">
-                        <textarea id="editor" class="form-control" style="background-color: #282C34"></textarea>
+                        <textarea id="editor" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -126,12 +126,22 @@
 <script type="text/javascript" language="javascript" src="jquery/3.2.1/jquery.3.2.1.min.js"></script>
 <script type="text/javascript" language="javascript" src="popper/popper.min.js"></script>
 <script type="text/javascript" language="javascript" src="bootstrap/4.1.2/bootstrap.min.js"></script>
-<script src="tinymce/js/tinymce/tinymce.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/tinymce.js"></script>
+<!--<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/textcolor/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/wordcount/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/searchreplace/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/print/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/textcolor/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/colorpicker/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/bbcode/plugin.js"></script>
+<script type="text/javascript" language="javascript" src="tinymce/js/tinymce/plugins/help/plugin.js"></script>-->
+
 
 <script type="text/javascript">
     tinymce.init({
         selector: '#editor',
         // 去除官方brand
+        //font_size:['font_size','fontsizeselect'],
         branding:false,
         language:'zh_CN',
         //skin: "lightgray",
@@ -148,8 +158,9 @@
        // width:800,
         height:500,
         resize:false,
-        plugins:[ 'image code','paste','table','prettify','imagetools'],
-        toolbar1: "insert undo redo | styleselect | font bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link image prettify",
+        plugins:[ 'image code','paste','lists','table','prettify','imagetools','searchreplace','textcolor','charmap','bbcode','colorpicker','wordcount','print','help'],
+        toolbar1: " insert undo redo | styleselect | fontsizeselect font bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify ",
+        toolbar2: "bullist numlist outdent indent | charmap bbcode print wordcount | searchreplace | help",
         // enable title field in the Image dialog
         image_title: true,
         // enable automatic uploads of images represented by blob or data URIs

@@ -249,7 +249,7 @@ tinymce.addI18n('zh_CN',{
 "Show blocks": "\u663e\u793a\u533a\u5757\u8fb9\u6846",
 "Show invisible characters": "\u663e\u793a\u4e0d\u53ef\u89c1\u5b57\u7b26",
 "Words: {0}": "\u5b57\u6570\uff1a{0}",
-"{0} words": "{0} \u5b57",
+"{0} words": "{0} 字",
 "File": "\u6587\u4ef6",
 "Edit": "\u7f16\u8f91",
 "Insert": "\u63d2\u5165",
