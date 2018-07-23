@@ -1,0 +1,10 @@
+.bodydiv {
+    width: 76%;
+    min-height: 750px;
+    max-height: 1000px;
+    margin: auto;
+    border-top: solid darkgrey 0px;
+    border-bottom: solid darkgrey 3px;
+    border-left: solid darkgrey 3px;
+    border-right: solid darkgrey 3px;
+}

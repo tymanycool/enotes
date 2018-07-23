@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .my-button {
+            width: 240px;
+        }
+
+        .example {
+            width: 100%;
+            -webkit-order: 1;
+            -ms-order: 1;
+            order: 1;
+            position: relative;
+            min-height: 450px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-content: center;
+            align-items: center;
+        }
+
+        .my-button {
+            width: 30%;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            border-style: dotted;
+            border-color: white;
+            border-width: medium;
+        }
+
+        .my-popper {
+            background: #FFC107;
+            color: black;
+            width: 150px;
+            border-radius: 3px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="example">
+    <div class="my-button">123</div>
+    <div class="my-popper">666222</div>
+</div>
+<p></p>
+<p></p>
+
+</body>
+<!--<script src="popper/popper.1.12.6.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper-utils.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.js"></script>
+<script type="text/javascript">
+    function applyReactStyle(data) {
+        console.log(data)
+    };
+    var container = document.querySelector('.example');
+    var reference = document.querySelector('.my-button');
+    var popper = document.querySelector('.my-popper');
+    var anotherPopper = new Popper(
+        reference,
+        popper,
+        {
+            placement: 'bottom-end',
+            onCreate: function (data) {
+                console.log(1234)
+            },
+            onUpdate: function (data) {
+                console.log(444)
+            }
+        });
+
+</script>
+</html>

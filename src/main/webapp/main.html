@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="bootstrap/4.1.2/css/slate/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="custom/custom.css" type="text/css" />
     <!--<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css" />-->
     <!--<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap-theme.min.css" type="text/css" />-->
 
@@ -11,7 +12,7 @@
 <body>
 
 
-    <div style="width: 76%;min-height: 750px;max-height: 1000px;margin: auto;border:solid darkgrey 3px;">
+    <div class="bodydiv">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
             <a class="navbar-brand" href="#">ENotes</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,19 +52,18 @@
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
                 </form>-->
                 &emsp;
-                <a class="nav-link dropdown-toggle" style="border: 0px;"><span>独孤求败</span></a>
-                <!--<ul class="nav nav-pills">
-                    <li class="nav-item dropup" style="border: 0px;">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="border: 0px;"><span style="width:150px;">&emsp;&emsp;&emsp;&emsp;独孤求败</span></a>
-                        <div class="dropdown-menu" x-placement="bottom-right" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                            <a class="dropdown-item" href="#"><span>上次登陆时间</span><br><span>2018-07-17 12:30:10</span></a>
-                            <a class="dropdown-item" href="#">修改个人资料</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">退出登陆</a>
-                        </div>
-                    </li>
-                </ul>-->
+                <div onmouseenter="showDiv()" onmouseleave="closeDiv()">
+                    <div id="refId" class="nav-link dropdown-toggle" style="border: 0px;"><span>独孤求败</span></div>
+                    <div id="popId" class="list-group" style="position:absolute;display:none;z-index: 1655;width: 180px;"  >
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <span>上次登陆时间</span><br><span>2018-07-17 12:30:10</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">修改个人资料
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action disabled">退出登陆
+                        </a>
+                    </div>
+                </div>
             </div>
         </nav>
         <div class="alert alert-dismissible alert-primary">
@@ -84,5 +84,18 @@
     <script type="text/javascript" language="javascript" src="jquery/3.2.1/jquery.3.2.1.min.js"></script>
     <script type="text/javascript" language="javascript" src="popper/popper.min.js"></script>
     <script type="text/javascript" language="javascript" src="bootstrap/4.1.2/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function showDiv(){
+            document.getElementById('popId').style.display='block';
+            new Popper(document.getElementById('refId'),document.getElementById('popId'),{
+                placement:'bottom-end'
+            });
+        }
+
+        function closeDiv(){
+            document.getElementById('popId').style.display='none';
+        }
+    </script>
 </body>
 </html>

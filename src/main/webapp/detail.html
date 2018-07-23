@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="bootstrap/4.1.2/css/slate/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="tinymce/js/tinymce/skins/lightgray/skin.min.css" type="text/css" />
+    <link rel="stylesheet" href="custom/custom.css" type="text/css" />
     <!--<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap.min.css" />-->
     <!--<link rel="stylesheet" href="bootstrap/3.3.4/css/bootstrap-theme.min.css" type="text/css" />-->
 
@@ -12,7 +13,7 @@
 <body>
 
 
-<div style="width: 76%;height:100%;margin: auto;border:solid darkgrey 3px;">
+<div class="bodydiv">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
         <a class="navbar-brand" href="#">ENotes</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +44,18 @@
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
             </form>
             &emsp;
-            <a class="nav-link dropdown-toggle" style="border: 0px;"><span>独孤求败</span></a>
+            <div onmouseenter="showDiv()" onmouseleave="closeDiv()">
+                <div id="refId" class="nav-link dropdown-toggle" style="border: 0px;"><span>独孤求败</span></div>
+                <div id="popId" class="list-group" style="position:absolute;display:none;z-index: 1655;width: 180px;"  >
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <span>上次登陆时间</span><br><span>2018-07-17 12:30:10</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">修改个人资料
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action disabled">退出登陆
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="alert alert-dismissible alert-primary">
@@ -160,7 +172,7 @@
         resize:false,
         plugins:[ 'image code','paste','lists','table','prettify','imagetools','searchreplace','textcolor','charmap','bbcode','colorpicker','wordcount','print','help'],
         toolbar1: " insert undo redo | styleselect | fontsizeselect font bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify ",
-        toolbar2: "bullist numlist outdent indent | charmap bbcode print wordcount | searchreplace | help",
+        toolbar2: "bullist numlist outdent indent | charmap table bbcode print wordcount | searchreplace | help",
         // enable title field in the Image dialog
         image_title: true,
         // enable automatic uploads of images represented by blob or data URIs
@@ -214,6 +226,17 @@
             input.click();
         }
     });
+
+    function showDiv(){
+        document.getElementById('popId').style.display='block';
+        new Popper(document.getElementById('refId'),document.getElementById('popId'),{
+            placement:'bottom-end'
+        });
+    }
+
+    function closeDiv(){
+        document.getElementById('popId').style.display='none';
+    }
 
     $(function () {
         //alert(myeditor.getContent());

@@ -1,0 +1,129 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .my-button {
+            width: 240px;
+        }
+
+        .example {
+            width: 100%;
+            -webkit-order: 1;
+            -ms-order: 1;
+            order: 1;
+            position: relative;
+            min-height: 450px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-content: center;
+            align-items: center;
+        }
+
+        .my-button {
+            width: 30%;
+            margin: 0 auto;
+            position: absolute;
+            left: 319px;
+            text-align: center;
+            padding: 20px;
+            border-style: dotted;
+            border-color: white;
+            border-width: medium;
+        }
+
+        .my-popper {
+            background: #FFC107;
+            color: black;
+            width: 150px;
+            border-radius: 3px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="example">
+    <div class="my-button dialog-title" draggable="true">123</div>
+    <div class="my-popper">666</div>
+</div>
+<p></p>
+<p></p>
+
+</body>
+<script src="popper/popper.1.12.6.js"></script>
+<script type="text/javascript">
+    function applyReactStyle(data) {
+        console.log(data)
+    };
+    var container = document.querySelector('.example');
+    var reference = document.querySelector('.my-button');
+    var popper = document.querySelector('.my-popper');
+    var anotherPopper = new Popper(
+        reference,
+        popper,
+        {
+            placement: 'left',
+            onCreate: function (data) {
+                console.log(1234)
+            },
+            onUpdate: function (data) {
+                console.log(444)
+            }
+            ,
+            modifiers: {
+                flip: {
+                    behavior: ['left', 'bottom', 'top']
+                }
+                ,
+                preventOverflow: {
+                    boundariesElement: container,
+                }
+                ,
+            }
+            ,
+        }
+        )
+    ;
+
+    var isDialogTitle = false;
+    var diffX = 0;
+    var diffY = 0;
+
+    function down(event) {
+        if (event.target.className.indexOf('dialog-title') != -1) {
+            isDialogTitle = true;
+//            console.log('event.clientX:',event.clientX)
+//            console.log('event.clientY:',event.clientY)
+//            console.log('reference.offsetTop:',reference.offsetTop)
+//            console.log('reference.offsetLeft:',reference.offsetLeft)
+            diffX = event.clientX - reference.offsetLeft;
+            diffY = event.clientY - reference.offsetTop;
+            console.log(diffX)
+            console.log(diffY)
+        }
+    }
+
+    function move(e) {
+        var dialog = reference;
+        if (isDialogTitle) {//只有点击Dialog Title的时候才能拖动
+
+            dialog.style.left = (e.clientX - diffX) + 'px';
+            dialog.style.top = (e.clientY - diffY) + 'px';
+            anotherPopper.update()
+        }
+    }
+
+    function up(e) {
+        isDialogTitle = false;
+        diffX = 0;
+        diffY = 0;
+    }
+
+    document.addEventListener('mousedown', down);
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+
+
+</script>
+</html>
